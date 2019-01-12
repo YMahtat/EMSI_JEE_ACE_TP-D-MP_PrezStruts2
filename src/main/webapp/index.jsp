@@ -47,7 +47,7 @@
 					</span>
 					<div class="wrap-input100 validate-input m-b-36" data-validate = "Username is required">
 					
-						<s:textfield name="bean.userName"></s:textfield>
+						<s:textfield name="bean.username"></s:textfield>
 						
 						<span class="focus-input100"></span>
 					</div>

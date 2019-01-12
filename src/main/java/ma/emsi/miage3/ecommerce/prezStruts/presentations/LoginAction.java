@@ -8,19 +8,19 @@ import ma.emsi.miage3.ecommerce.prezStruts.models.UserAuthentification;
 
 public class LoginAction extends ActionSupport {
 
-  private UserAuthentification userAuthentification;
+  private UserAuthentification bean;
 
-  public UserAuthentification getUserAuthentification() {
-    return userAuthentification;
+  public UserAuthentification getBean() {
+    return bean;
   }
 
-  public void setUserAuthentification(UserAuthentification userAuthentification) {
-    this.userAuthentification = userAuthentification;
+  public void setBean(UserAuthentification bean) {
+    this.bean = bean;
   }
 
   public String seConnecter() throws Exception {
-    String userName = userAuthentification.getUserName();
-    String password = userAuthentification.getPassword();
+    String userName = bean.getUsername();
+    String password = bean.getPassword();
     User user = UserBeanAccessSingleton.getInstance().getUserBean().authenticateByUserNameAndPassword(userName, password);
     if(user.getRole().equals(UserRole.administrateur)){
       return "success-admin";
