@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <package name="users-modules" extends="struts-default" namespace="/users">
+        <action name="connecter"
+                class="ma.emsi.miage3.ecommerce.prezStruts.presentations.LoginAction" method="seConnecter">
+            <result name="success-admin" type="redirect">/articles/allArticles.action</result>
+            <result name="login">/index.jsp</result>
+        </action>
+    </package>
+</struts>

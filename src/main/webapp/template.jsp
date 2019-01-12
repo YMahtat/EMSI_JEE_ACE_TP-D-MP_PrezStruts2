@@ -2,7 +2,8 @@
     pageEncoding="ISO-8859-1"%>
     
     <%@taglib uri="/struts-tags" prefix="s" %>
-
+    
+    
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,7 +38,7 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
-				<form class="login100-form validate-form flex-sb flex-w" action="users/connecter.action" method="get">
+				<form class="login100-form validate-form flex-sb flex-w" action="user/connecter.action" method="get">
 					<span class="login100-form-title p-b-32">
 						Account Login
 					</span>
@@ -47,7 +48,7 @@
 					</span>
 					<div class="wrap-input100 validate-input m-b-36" data-validate = "Username is required">
 					
-						<s:textfield name="bean.userName"></s:textfield>
+						<s:textfield name="bean.username"></s:textfield>
 						
 						<span class="focus-input100"></span>
 					</div>
@@ -60,7 +61,7 @@
 							<i class="fa fa-eye"></i>
 						</span>
 						
-						<s:password name="bean.password"></s:password>
+						<s:textfield name="bean.pass"></s:textfield>
 
 						<span class="focus-input100"></span>
 					</div>

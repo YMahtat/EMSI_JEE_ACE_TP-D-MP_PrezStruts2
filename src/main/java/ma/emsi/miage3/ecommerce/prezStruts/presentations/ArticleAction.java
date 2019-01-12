@@ -7,20 +7,20 @@ import ma.emsi.miage3.ecommerce.models.Article;
 import java.util.List;
 
 public class ArticleAction extends ActionSupport {
-  private List<Article> articleList;
+  private List<Article> articles;
 
-  public List<Article> getArticleList() {
-    return articleList;
+  public List<Article> getArticles() {
+    return this.articles;
   }
 
-  public void setArticleList(List<Article> articleList) {
-    this.articleList = articleList;
+  public void setArticles(List<Article> articles) {
+    this.articles = articles;
   }
 
-  public String test() throws Exception {
-    articleList = ArticleBeanAccessSingleton.getInstance().getArticleBean().getAllArticles();
+  public String getAllArticles() throws Exception {
+    this.articles = ArticleBeanAccessSingleton.getInstance().getArticleBean().getAllArticles();
     System.out.println(ArticleBeanAccessSingleton.getInstance());
-    System.out.println(articleList);
+    System.out.println(this.articles);
     return "SUCCESS";
   }
 }

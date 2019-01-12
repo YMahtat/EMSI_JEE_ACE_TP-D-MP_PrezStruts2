@@ -7,7 +7,7 @@
 <body>
 <h1>Test1</h1>
 <div>
-    <display:table name="articleList">
+    <display:table name="articles">
         <display:column property="id"></display:column>
         <display:column property="name"></display:column>
         <display:column property="description"></display:column>
