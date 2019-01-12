@@ -15,10 +15,9 @@ public class ArticleBeanAccessSingleton {
   private ArticleRemote articleBean;
 
   public synchronized static ArticleBeanAccessSingleton getInstance() {
-    if(ourInstance != null){
+    if (ourInstance != null) {
       return ourInstance;
-    }
-    else {
+    } else {
       try {
         return ourInstance = new ArticleBeanAccessSingleton();
       } catch (NamingException e) {
