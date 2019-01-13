@@ -1,101 +1,96 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1" %>
-
-<%@taglib uri="/struts-tags" prefix="s" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
+<%@taglib uri="/struts-tags" prefix="s" %>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <jsp:include page="layouts/headerLib.jsp"></jsp:include>
 </head>
-<body style="width: 100%" class="size-1140">
+<body style="width: 100%">
 <jsp:include page="menu-admin.jsp"></jsp:include>
-<section>
 <div id="SkafContent">
-    <div id="first-block">
-        <div class="line">
             <h2>GESTION DES ARTICLES</h2>
-            <display:table name="articles" class="table mx-auto">
-                <display:column property="id"></display:column>
-                <display:column property="name"></display:column>
-                <display:column property="description"></display:column>
-                <display:column property="stockQuantity"></display:column>
-                <display:column property="price"></display:column>
-                <display:column title="ACTION">
-                    <button class="btn btn-danger" onclick="deleteArticle(${article.id})">SUPPRIMER</button>
-                    <button class="btn btn-warning" onclick="showUpdateForm(this,${article.id})">MODIFIER</button>
-                </display:column>
-            </display:table>
-            <div>
+            <div style="text-align: center;width: 100%">
+                <display:table name="articles" uid="article" class="table mx-auto">
+                    <display:column property="id"></display:column>
+                    <display:column property="reference"></display:column>
+                    <display:column property="name"></display:column>
+                    <display:column property="description"></display:column>
+                    <display:column property="price"></display:column>
+                    <display:column property="stockQuantity"></display:column>
+                    <display:column title="ACTION">
+                        <button class="btn btn-danger" onclick="deleteArticle(<s:property value="%{#attr.article.id}"/>)">SUPPRIMER</button>
+                        <button class="btn btn-warning" onclick="showUpdateForm(this,<s:property value="%{#attr.article.id}"/>)">MODIFIER</button>
+                    </display:column>
+                </display:table>
+            </div>
+            <div style="text-align: center;width: 100%">
                 <button class="btn btn-success btn-block" onclick="showAddForm()">AJOUTER ARTICLE</button>
             </div>
 
-            <div id="updateForm" style="display: none;">
-                <table class="table">
-                    <tr>
-                        <input type="hidden" name="id" id="idUpdate"/>
-                        <input type="hidden" name="ref" id="refUpdate"/>
-                        <td>NOM :</td>
-                        <td><input type="text" name="name" id="nameUpdate"/></td>
-                    </tr>
-                    <tr>
-                        <td>DESCREPTION :</td>
-                        <td><input type="text" name="desc" id="descUpdate"/></td>
-                    </tr>
-                    <tr>
-                        <td>PRIX</td>
-                        <td><input type="number" name="price" id="priceUpdate"/></td>
-                    </tr>
-                    <tr>
-                        <td>QUANTITE EN STOCK</td>
-                        <td><input type="number" name="quantity" id="quantityUpdate"/></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <button class="btn btn-primary btn-block" onclick="updateArticle()">VALIDER</button>
-                        </td>
-                    </tr>
-                </table>
-            </div>
 
-
+            <!-- UPDATE ARTICLE FORM -->
+            <jsp:include page="updateArticle.jsp"></jsp:include>
             <!-- ADD ARTICLE FORM -->
             <jsp:include page="addArticle.jsp"></jsp:include>
-
-        </div>
-    </div>
-</div><!-- /container -->
-<jsp:include page="layouts/bottomLib.jsp"></jsp:include>
-</section>
+</div>
 <script type="text/javascript">
-    function showUpdateForm(that, id) {
-        var ref = $(that).parent().prev().prev().prev().prev().prev().text();
-        var name = $(that).parent().prev().prev().prev().prev().text();
-        var desc = $(that).parent().prev().prev().prev().text();
-        var price = $(that).parent().prev().prev().text();
-        var quantity = $(that).parent().prev().text();
-        $("#idUpdate").val(id);
-        $("#refUpdate").val(ref);
-        $("#nameUpdate").val(name);
-        $("#descUpdate").val(desc);
-        $("#priceUpdate").val(price);
-        $("#quantityUpdate").val(quantity);
-        $('#updateForm').show();
+    var showUpdate = false;
+    var showAdd = false;
+    $(document).ready(function(){
+        //UPDATE FORM : ON-SUBMIT
+        $("#updateFormForm").on('submit',function(event){
+            event.preventDefault();
+            updateArticle();
+        });
+        //ADD FORM : ON-SUBMIT
+        $("#addFormForm").on('submit',function(event){
+            event.preventDefault();
+            addArticle();
+        });
+    });
+    function showUpdateForm(that,id){
+        if(showUpdate == false){
+            var ref   = $(that).parent().prev().prev().prev().prev().prev().text();
+            var name = $(that).parent().prev().prev().prev().prev().text();
+            var desc = $(that).parent().prev().prev().prev().text();
+            var price = $(that).parent().prev().prev().text();
+            var quantity = $(that).parent().prev().text();
+            $("#idUpd").val(id);
+            $("#refUpd").val(ref);
+            $("#nameUpd").val(name);
+            $("#descUpd").val(desc);
+            $("#priceUpd").val(price);
+            $("#quantityUpd").val(quantity);
+            $('#updateForm').show();
+            showUpdate = true;
+            showAdd = false;
+            $('#addForm').hide();
+        }
+        else{
+            $('#updateForm').hide();
+            showUpdate = false;
+        }
     }
 
     function updateArticle() {
         $.ajax({
-            type: "POST",
-            url: "articles/updateArticle.action",
-            data: "id=" + $("#idUpdate").val() + "&name=" + $("#nameUpdate").val() + "&desc=" + $("#descUpdate").val() +
-                "&price=" + $("#priceUpdate").val() + "&quantity=" + $("#quantityUpdate").val() + "&ref=" + $("#refUpdate").val(),
-            success: function (result) {
-                alert(result);
-                window.location.replace('articles/allArticles.action');
+            type:"POST",
+            url:"articles/updateArticle.action",
+            data:"bean.id="+$("#idUpd").val()+"&bean.reference="+$("#refUpd").val()+"&bean.name="+$("#nameUpd").val()+"&bean.description="+$("#descUpd").val()+
+                "&bean.price="+$("#priceUpd").val()+"&bean.stockQuantity="+$("#quantityUpd").val(),
+            success:function(result){
+                window.location.replace('<%=request.getContextPath() %>/articles/allArticles.action');
             },
-            error: function (result) {
-                alert("Some error occured.");
+            error: function(data, textStatus, jqXHR){
+                console.log('jqXHR:');
+                console.log(jqXHR);
+                console.log('textStatus:');
+                console.log(textStatus);
+                console.log('data:');
+                console.log(data);
+                window.location.replace('<%=request.getContextPath() %>/error.jsp');
             }
         });
     }
@@ -103,35 +98,41 @@
     function deleteArticle(id) {
         //var id = $(that).parent().prev().prev().prev().prev().prev().text();
         $.ajax({
-            type: "POST",
-            url: "articles/deleteArticle.action",
-            data: "id=" + id,
-            success: function (result) {
-                alert("ARTICLE BIEN SUPPRIMER!");
-                window.location.replace('menuArticle.action');
+            type:"POST",
+            url:"articles/deleteArticle.action",
+            data:"id="+id,
+            success:function(result){
+                window.location.replace('<%=request.getContextPath() %>/articles/allArticles.action');
             },
-            error: function (result) {
-                alert("Some error occured.");
+            error: function(result){
+                window.location.replace('<%=request.getContextPath() %>/error.jsp');
             }
         });
     }
 
     function showAddForm() {
-        $('#addForm').show();
+        if(showAdd == false){
+            $('#addForm').show();
+            showUpdate = false;
+            showAdd = true;
+            $('#updateForm').hide();
+        }
+        else {
+            $('#addForm').hide();
+            showAdd = false;
+        }
     }
-
     function addArticle() {
         $.ajax({
-            type: "POST",
-            url: "articles/addArticle.action",
-            data: "ref=" + $("#refAdd").val() + "&name=" + $("#nameAdd").val() + "&desc=" + $("#descAdd").val() +
-                "&price=" + $("#priceAdd").val() + "&quantity=" + $("#quantityAdd").val(),
-            success: function (result) {
-                alert(result);
-                window.location.replace('menuArticle.action');
+            type:"POST",
+            url:"articles/addArticle.action",
+            data:"bean.reference="+$("#refAdd").val()+"&bean.name="+$("#nameAdd").val()+"&bean.description="+$("#descAdd").val()+
+                "&bean.price="+$("#priceAdd").val()+"&bean.stockQuantity="+$("#quantityAdd").val(),
+            success:function(result){
+                window.location.replace('<%=request.getContextPath() %>/articles/allArticles.action');
             },
-            error: function (result) {
-                alert("Some error occured.");
+            error: function(result){
+                window.location.replace('<%=request.getContextPath() %>/error.jsp');
             }
         });
     }

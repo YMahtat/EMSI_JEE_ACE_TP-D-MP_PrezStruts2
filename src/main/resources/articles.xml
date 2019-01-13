@@ -4,6 +4,20 @@
     <package name="articles-modules" extends="struts-default" namespace="/articles">
         <action name="allArticles" class="ma.emsi.miage3.ecommerce.prezStruts.presentations.ArticleAction" method="getAllArticles">
             <result name="SUCCESS">/listArticles.jsp</result>
+            <result name="ERROR">/error.jsp</result>
+            <result name="input">/index.jsp</result>
+        </action>
+        <action name="updateArticle" class="ma.emsi.miage3.ecommerce.prezStruts.presentations.ArticleAction" method="updateArticle">
+            <result name="SUCCESS">/listArticles.jsp</result>
+            <result name="ERROR">/error.jsp</result>
+        </action>
+        <action name="deleteArticle" class="ma.emsi.miage3.ecommerce.prezStruts.presentations.ArticleAction" method="deleteArticle">
+            <result name="SUCCESS">/listArticles.jsp</result>
+            <result name="ERROR">/error.jsp</result>
+        </action>
+        <action name="addArticle" class="ma.emsi.miage3.ecommerce.prezStruts.presentations.ArticleAction" method="addArticle">
+            <result name="SUCCESS">/listArticles.jsp</result>
+            <result name="ERROR">/error.jsp</result>
         </action>
     </package>
 </struts>
