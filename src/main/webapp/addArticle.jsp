@@ -35,4 +35,7 @@
             <td colspan="2"><button class="btn btn-secondary btn-block" onclick="showAddForm()">ANNULER</button></td>
         </tr>
     </table>
+    <br>
+    <br>
+    <br>
 </div>

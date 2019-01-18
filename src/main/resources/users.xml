@@ -7,5 +7,10 @@
             <result name="success-admin" type="redirect">/articles/allArticles.action</result>
             <result name="login">/index.jsp</result>
         </action>
+
+        <action name="deconnecter"
+                class="ma.emsi.miage3.ecommerce.prezStruts.presentations.LoginAction" method="seDeConnecter">
+            <result name="login">/index.jsp</result>
+        </action>
     </package>
 </struts>

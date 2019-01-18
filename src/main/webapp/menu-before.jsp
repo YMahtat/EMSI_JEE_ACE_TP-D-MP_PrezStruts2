@@ -6,10 +6,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link" href="<%=request.getContextPath() %>/articles/allArticles.action">GESTION DES ARTICLES</a>
-            <a class="nav-item nav-link" href="<%=request.getContextPath() %>/clients/allClients.action">GESTION DES CLIENTS</a>
-            <a class="nav-item nav-link" href="<%=request.getContextPath() %>/users/currentProfil.action">PERSO(PROFIL)</a>
-            <a class="nav-item nav-link" href="<%=request.getContextPath() %>/users/deconnecter.action">DECONNEXION</a>
+
         </div>
     </div>
 </nav>

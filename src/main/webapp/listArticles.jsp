@@ -29,6 +29,10 @@
                 <button class="btn btn-success btn-block" onclick="showAddForm()">AJOUTER ARTICLE</button>
             </div>
 
+            <br>
+            <br>
+            <br>
+
 
             <!-- UPDATE ARTICLE FORM -->
             <jsp:include page="updateArticle.jsp"></jsp:include>

@@ -2,20 +2,33 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
     <package name="articles-modules" extends="struts-default" namespace="/articles">
+        <!--<interceptors>-->
+            <!--<interceptor name="sessionValidation" class="ma.emsi.miage3.ecommerce.prezStruts.presentations.SessionInterceptor"></interceptor>-->
+        <!--</interceptors>-->
+        <global-results>
+            <result name="login">/index.jsp</result>
+        </global-results>
+
         <action name="allArticles" class="ma.emsi.miage3.ecommerce.prezStruts.presentations.ArticleAction" method="getAllArticles">
+            <!--<interceptor-ref name="sessionValidation"></interceptor-ref>-->
+            <!--<interceptor-ref name="basicStack"></interceptor-ref>-->
             <result name="SUCCESS">/listArticles.jsp</result>
             <result name="ERROR">/error.jsp</result>
             <result name="input">/index.jsp</result>
         </action>
         <action name="updateArticle" class="ma.emsi.miage3.ecommerce.prezStruts.presentations.ArticleAction" method="updateArticle">
+            <!--<interceptor-ref name="sessionValidation"></interceptor-ref>-->
             <result name="SUCCESS">/listArticles.jsp</result>
             <result name="ERROR">/error.jsp</result>
         </action>
         <action name="deleteArticle" class="ma.emsi.miage3.ecommerce.prezStruts.presentations.ArticleAction" method="deleteArticle">
+            <!--<interceptor-ref name="sessionValidation"></interceptor-ref>-->
             <result name="SUCCESS">/listArticles.jsp</result>
             <result name="ERROR">/error.jsp</result>
         </action>
         <action name="addArticle" class="ma.emsi.miage3.ecommerce.prezStruts.presentations.ArticleAction" method="addArticle">
+            <!--<interceptor-ref name="sessionValidation"></interceptor-ref>-->
+            <!--<interceptor-ref name="basicStack"></interceptor-ref>-->
             <result name="SUCCESS">/listArticles.jsp</result>
             <result name="ERROR">/error.jsp</result>
         </action>

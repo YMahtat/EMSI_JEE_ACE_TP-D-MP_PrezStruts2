@@ -1,115 +1,56 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    
-    <%@taglib uri="/struts-tags" prefix="s" %>
-
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib uri="http://displaytag.sf.net" prefix="display" %>
+<%@taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-	<title>Login V14</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="<%=request.getContextPath() %>/images/icons/favicon.ico"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/vendor/animate/animate.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/vendor/css-hamburgers/hamburgers.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/vendor/animsition/css/animsition.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/vendor/select2/select2.min.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/vendor/daterangepicker/daterangepicker.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/util.css">
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/main.css">
-<!--===============================================================================================-->
+    <jsp:include page="layouts/headerLib.jsp"></jsp:include>
 </head>
+
 <body>
-	
-	<div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
-				<form class="login100-form validate-form flex-sb flex-w" action="users/connecter.action" method="get">
-					<span class="login100-form-title p-b-32">
-						Account Login
-					</span>
+<%--<jsp:include page="menu-before.jsp"></jsp:include>--%>
 
-					<span class="txt1 p-b-11">
-						Username
-					</span>
-					<div class="wrap-input100 validate-input m-b-36" data-validate = "Username is required">
-					
-						<s:textfield name="bean.username"></s:textfield>
-						
-						<span class="focus-input100"></span>
-					</div>
-					
-					<span class="txt1 p-b-11">
-						Password
-					</span>
-					<div class="wrap-input100 validate-input m-b-12" data-validate = "Password is required">
-						<span class="btn-show-pass">
-							<i class="fa fa-eye"></i>
-						</span>
-						
-						<s:password name="bean.password"></s:password>
-
-						<span class="focus-input100"></span>
-					</div>
-					
-					<div class="flex-sb-m w-full p-b-48">
-						<div class="contact100-form-checkbox">
-							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-							<label class="label-checkbox100" for="ckb1">
-								Remember me
-							</label>
-						</div>
-
-						<div>
-							<a href="#" class="txt3">
-								Forgot Password?
-							</a>
-						</div>
-					</div>
-
-					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
-							Login
-						</button>
-					</div>
-
-				</form>
-			</div>
-		</div>
-	</div>
-	
-
-	<div id="dropDownSelect1"></div>
-	
-<!--===============================================================================================-->
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/daterangepicker/moment.min.js"></script>
-	<script src="vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/countdowntime/countdowntime.js"></script>
-<!--===============================================================================================-->
-	<script src="js/main.js"></script>
-
+<div class="container">
+    <div id="SkafContent" class="row h-100">
+        <div style="width: 80%" class="mx-auto my-auto">
+            <div style="width: 100%" class="card text-white bg-dark mb-12">
+                <div class="card-header">CONNEXION</div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data" action="users/connecter.action">
+                        <div class="form-row align-items-center">
+                            <div class="col-md-5">
+                                <div style="height: 100%" class="col-auto">
+                                    <div style="height: 100%" class="input-group mb-2">
+                                        <div style="height: 100%" class="input-group-prepend">
+                                            <div style="height: 100%" class="input-group-text">LOGIN :</div>
+                                        </div>
+                                        <input name="bean.username" type="text" class="form-control mb-2"  placeholder="Username"  required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div style="height: 100%" class="col-auto">
+                                    <div style="height: 100%" class="input-group mb-2">
+                                        <div style="height: 100%" class="input-group-prepend">
+                                            <div style="height: 100%" class="input-group-text">PASSWORD :</div>
+                                        </div>
+                                        <input name="bean.password" type="password" class="form-control mb-2"  placeholder="password"  required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div style="height: 100%" class="col-auto">
+                                    <div style="height: 100%" class="input-group mb-2">
+                                        <button style="font-size: 93%; height: 100%" type="submit" class="btn btn-primary mb-2">SE CONNECTER</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

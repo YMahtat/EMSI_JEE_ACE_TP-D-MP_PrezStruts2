@@ -60,6 +60,7 @@ public class ArticleAction extends ActionSupport {
   }
 
   public String addArticle() throws Exception {
+    System.out.println(bean);
     Article article = ArticleBeanAccessSingleton.getInstance().getArticleBean().addArticle(bean);
     if(article != null && article.getId() != null) return "SUCCESS";
     else return "ERROR";
